@@ -15,6 +15,9 @@ app.use('/api/images', express.static(__dirname + '/assets'));
 app.use('/api', router);
 
 //routes
+app.get('/', async (req, res) => {
+  res.send("Server is running");
+});
 router.get('/get-images-path', async (req, res) => {
   const data = await preventions.getImageUrl("/api/images");
   res.send(data);
