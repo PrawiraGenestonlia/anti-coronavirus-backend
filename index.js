@@ -11,8 +11,8 @@ const preventions = new PreventionsApi();
 
 //middlewares
 app.use(cors());
-app.use('ncov-api/api/images', express.static(__dirname + '/assets'));
-app.use('ncov-api/api', router);
+app.use('/ncov-api/api/images', express.static(__dirname + '/assets'));
+app.use('/ncov-api/api', router);
 
 //routes
 app.get('/', async (req, res) => {
