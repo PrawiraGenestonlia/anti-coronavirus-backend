@@ -22,7 +22,7 @@ router.get('/api-summary', async (req, res) => {
   res.send(require('./summary'));
 });
 router.get('/get-images-path', async (req, res) => {
-  const data = await preventions.getImageUrl("ncov-api/images");
+  const data = await preventions.getImageUrl("https://x-dream.tech/ncov-api/images");
   res.send(data);
 });
 router.get('/get-summary', async (req, res) => {
