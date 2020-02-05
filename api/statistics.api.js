@@ -46,6 +46,20 @@ class statistics {
     });
   }
 
+  async getDaily() {
+    return new Promise((resolve, reject) => {
+      try {
+        tabletojson.convertUrl('https://www.worldometers.info/coronavirus/coronavirus-cases/',
+          function (tablesAsJson) {
+            resolve(tablesAsJson[0]);
+          }
+        );
+      } catch (err) {
+        reject(err);
+      }
+    });
+  }
+
 }
 
 module.exports = statistics;
