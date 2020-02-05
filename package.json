@@ -1,0 +1,15 @@
+{
+  "name": "anti-coronavirus-backend",
+  "version": "1.0.0",
+  "description": "Coronavirus - All you need to know (backend)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "express"
+  ],
+  "repository": "https://github.com/PrawiraGenestonlia/anti-coronavirus-backend",
+  "author": "Prawira Genestonlia",
+  "license": "MIT"
+}
