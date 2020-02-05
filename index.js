@@ -15,8 +15,11 @@ app.use('/ncov-api/images', express.static(__dirname + '/assets'));
 app.use('/ncov-api/', router);
 
 //routes
-app.get('/', async (req, res) => {
+router.get('/', async (req, res) => {
   res.send("Server is running");
+});
+router.get('/api-summary', async (req, res) => {
+  res.send(require('./summary'));
 });
 router.get('/get-images-path', async (req, res) => {
   const data = await preventions.getImageUrl("ncov-api/images");
