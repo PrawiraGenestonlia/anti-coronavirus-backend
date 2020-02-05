@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Coronavirus - All you need to know (backend)",
   "main": "index.js",
+  "homepage": "https://x-dream.tech/ncov-api/",
   "scripts": {
     "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
