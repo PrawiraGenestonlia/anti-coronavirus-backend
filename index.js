@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const router = express.Router();
 const { StatisticsApi, PreventionsApi } = require('./api');
 const port = process.env.PORT || 4000;
@@ -8,7 +9,8 @@ const port = process.env.PORT || 4000;
 const statistics = new StatisticsApi();
 const preventions = new PreventionsApi();
 
-//global routes
+//middlewares
+app.use(cors());
 app.use('/api/images', express.static(__dirname + '/assets'));
 app.use('/api', router);
 
@@ -25,12 +27,14 @@ router.get('/get-stats', async (req, res) => {
   const stats = await statistics.getStats();
   res.send(stats);
 });
+router.get('/get-daily', async (req, res) => {
+  const stats = await statistics.getDaily();
+  res.send(stats);
+});
 
 
 
 app.listen(port, async () => {
   console.log(`App start at port ${port}!`);
   //test
-  let results = await statistics.getDaily()
-  console.log(results);
 });
