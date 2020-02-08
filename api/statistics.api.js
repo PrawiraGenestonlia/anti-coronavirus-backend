@@ -21,7 +21,7 @@ class statistics {
               data["Total Cases"] += Number(d["Total Cases"].replace(",", ""));
               data["Total Deaths"] += d["Total Deaths"] ? Number(d["Total Deaths"].replace(",", "")) : 0;
               data["Total Recovered"] += d["Total Recovered"] ? Number(d["Total Recovered"].replace(",", "")) : 0;
-              data["Total Critical"] += d["Total Critical"] ? Number(d["Total Critical"].replace(",", "")) : 0;
+              data["Total Critical"] += d["Total Critical"] ? Number(d["Total Severe"].replace(",", "")) : 0;
             })
             resolve(data);
           }
