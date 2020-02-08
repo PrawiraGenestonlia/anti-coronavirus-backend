@@ -18,10 +18,11 @@ class statistics {
           function (tablesAsJson) {
             let data = { "Total Cases": 0, "Total Deaths": 0, "Total Recovered": 0, "Total Critical": 0 };
             tablesAsJson[0].map(d => {
+              console.log(d)
               data["Total Cases"] += Number(d["Total Cases"].replace(",", ""));
               data["Total Deaths"] += d["Total Deaths"] ? Number(d["Total Deaths"].replace(",", "")) : 0;
               data["Total Recovered"] += d["Total Recovered"] ? Number(d["Total Recovered"].replace(",", "")) : 0;
-              data["Total Critical"] += d["Total Critical"] ? Number(d["Total Severe"].replace(",", "")) : 0;
+              data["Total Critical"] += d["Total Severe"] ? Number(d["Total Severe"].replace(",", "")) : 0;
             })
             resolve(data);
           }
@@ -37,7 +38,14 @@ class statistics {
       try {
         tabletojson.convertUrl('https://www.worldometers.info/coronavirus/',
           function (tablesAsJson) {
-            resolve(tablesAsJson[0]);
+            let output = tablesAsJson[0].map(d => {
+              if (d.hasOwnProperty("Total Severe")) {
+                d['Total Critical'] = d['Total Severe'];
+                delete d['Total Severe'];
+              }
+              return d;
+            })
+            resolve(output);
           }
         );
       } catch (err) {
