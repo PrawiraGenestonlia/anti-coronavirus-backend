@@ -46,7 +46,7 @@ class statistics {
                 delete d['Serious,  Critical'];
               }
               if (d.hasOwnProperty("Country, Other")) {
-                d['Country'] = d['Country, Other'];
+                d['Country, Territory'] = d['Country, Other'];
                 delete d['Country, Other'];
               }
               return d;
