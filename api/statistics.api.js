@@ -16,13 +16,14 @@ class statistics {
       try {
         tabletojson.convertUrl('https://www.worldometers.info/coronavirus/',
           function (tablesAsJson) {
+            console.log(tablesAsJson);
             let data = { "Total Cases": 0, "Total Deaths": 0, "Total Recovered": 0, "Total Critical": 0 };
             tablesAsJson[0].map(d => {
-              console.log(d)
+
               data["Total Cases"] += Number(d["Total Cases"].replace(",", ""));
               data["Total Deaths"] += d["Total Deaths"] ? Number(d["Total Deaths"].replace(",", "")) : 0;
               data["Total Recovered"] += d["Total Recovered"] ? Number(d["Total Recovered"].replace(",", "")) : 0;
-              data["Total Critical"] += d["Total Severe"] ? Number(d["Total Severe"].replace(",", "")) : 0;
+              data["Total Critical"] += d["Serious,  Critical"] ? Number(d["Serious,  Critical"].replace(",", "")) : 0;
             })
             resolve(data);
           }
@@ -39,9 +40,13 @@ class statistics {
         tabletojson.convertUrl('https://www.worldometers.info/coronavirus/',
           function (tablesAsJson) {
             let output = tablesAsJson[0].map(d => {
-              if (d.hasOwnProperty("Total Severe")) {
-                d['Total Critical'] = d['Total Severe'];
-                delete d['Total Severe'];
+              if (d.hasOwnProperty("Serious,  Critical")) {
+                d['Total Critical'] = d['Serious,  Critical'];
+                delete d['Serious,  Critical'];
+              }
+              if (d.hasOwnProperty("Country, Other")) {
+                d['Country'] = d['Country, Other'];
+                delete d['Country, Other'];
               }
               return d;
             })
