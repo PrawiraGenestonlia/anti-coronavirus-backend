@@ -39,6 +39,7 @@ class statistics {
       try {
         tabletojson.convertUrl('https://www.worldometers.info/coronavirus/',
           function (tablesAsJson) {
+            //
             let output = tablesAsJson[0].map(d => {
               if (d.hasOwnProperty("Serious,  Critical")) {
                 d['Total Critical'] = d['Serious,  Critical'];
